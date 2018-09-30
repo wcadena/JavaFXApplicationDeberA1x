@@ -146,7 +146,11 @@ public class Generador {
 
     @Override
     public String toString() {
-        return "Generador{" + "id=" + id + ", fabricante=" + fabricante + ", modelo=" + modelo + ", c\u00f3digo=" + código + ", parametros=" + parametros + '}';
+        String parametros ="";
+        for (ParametroGenerador par : this.getParametros()) {
+            parametros += par.toString()+"\n";
+        }
+        return "Generador{" + "id=" + id + ", fabricante=" + fabricante + ", modelo=" + modelo + ", c\u00f3digo=" + código + ", parametros={\n" + parametros + "}}";
     }
         
     

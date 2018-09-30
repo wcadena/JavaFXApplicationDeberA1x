@@ -69,14 +69,25 @@ public class JavaFXApplicationDeberA1x extends Application {
             System.out.println("");
         }
         System.out.println("___________________________________");
+        this.arranca_monitor(1000, 10);
+        for (Generador gen : gc.lista_generadores) {
+            System.out.print(gen.getCódigo() + "\t");
+            System.out.print(gen.getModelo() + "\t");
+            System.out.println("");
+        }
         
     }
-    public void arranca_monitor(int tiempo){
-        for(int i = 0; i > 0; i++)
+    /**
+     * 
+     * @param tiempo //1000 para un minuto 
+     * @param interacciones // numero de simulaciones
+     */
+    public void arranca_monitor(int tiempo, int interacciones){
+        for(int i = 0; i > interacciones; i++)
         {
-                        
+            a1.creaSimulacion();
             try {
-                Thread.sleep(1000);
+                Thread.sleep(tiempo);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
