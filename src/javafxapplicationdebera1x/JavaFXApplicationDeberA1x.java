@@ -32,7 +32,7 @@ public class JavaFXApplicationDeberA1x extends Application {
         primaryStage.show();  
         this.inicializa_elementos();
         iniciliza_alarmas();
-        
+        iniciliza_generadores();//se coloca aca para hacer las simulaciones sin tener q presionar el boton de acccion
         
     }
     public Generador a1,a2,a3,a4;
@@ -70,12 +70,8 @@ public class JavaFXApplicationDeberA1x extends Application {
         }
         System.out.println("___________________________________");
         this.arranca_monitor(1000, 10);
-        for (Generador gen : gc.lista_generadores) {
-            System.out.print(gen.getCódigo() + "\t");
-            System.out.print(gen.getModelo() + "\t");
-            System.out.println("");
-        }
-        
+        System.out.println(a1);
+                
     }
     /**
      * 
@@ -83,14 +79,15 @@ public class JavaFXApplicationDeberA1x extends Application {
      * @param interacciones // numero de simulaciones
      */
     public void arranca_monitor(int tiempo, int interacciones){
-        for(int i = 0; i > interacciones; i++)
+        for(int i = 0; i < interacciones; i++)
         {
+            System.out.println("Creoo simulacion");
             a1.creaSimulacion();
-            try {
+            /*try {
                 Thread.sleep(tiempo);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }
+            }*/
         }
     }
     public Alarma al1;
@@ -110,7 +107,7 @@ public class JavaFXApplicationDeberA1x extends Application {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("Carga un generadores x1");
-                iniciliza_generadores();
+                //iniciliza_generadores();
             }
         });
         this.rootPanel.getChildren().add(btn);                

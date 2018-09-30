@@ -54,14 +54,15 @@ public class Generador {
     /**
      * Crea una simulacion
      */
-    public void creaSimulacion(){
+    public void creaMonitorRandom(){
         int id_proximo = this.parametros.size()+1;
         ParametroGenerador modelo = this.parametros.get(0);//saca el primer PArametro modelo
-        ParametroGenerador pg = new ParametroGenerador(id_proximo, "Modelo_" + Math.random(), 
+        ParametroGenerador pg = new ParametroGenerador(id_proximo, "Modelo_" + this.randomWithRange(1, 4), 
                 modelo.getRango_minimo(),modelo.getRango_maximo(),
                 this.randomWithRange(modelo.getRango_minimo(),modelo.getRango_maximo()),
                 this.darAlarmaRandom()
                 );
+        this.parametros.add(pg);
     }
 
     /**
