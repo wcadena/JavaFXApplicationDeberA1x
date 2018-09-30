@@ -9,10 +9,8 @@ package javafxapplicationdebera1x.model;
  *
  * @author wcade
  */
-public class Generador {
+public class Alarma {
     private int id;
-    private String fabricante;
-    private  String modelo;
-    private String código;
-    private intArray parametros;
+    private String nombre_alarma;
+    private String tipo_alarma;
 }
