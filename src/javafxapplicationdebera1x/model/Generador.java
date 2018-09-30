@@ -39,7 +39,7 @@ public class Generador {
         int range = (max - min) + 1;
         return (int) (Math.random() * range) + min;
     }
-    public Alarma darAlarma(){
+    public Alarma darAlarmaRandom(){
         int random_alarma = this.randomWithRange(1, 3);
         switch (random_alarma) {
             case 1:
@@ -59,8 +59,9 @@ public class Generador {
         ParametroGenerador modelo = this.parametros.get(0);//saca el primer PArametro modelo
         ParametroGenerador pg = new ParametroGenerador(id_proximo, "Modelo_" + Math.random(), 
                 modelo.getRango_minimo(),modelo.getRango_maximo(),
-                this.randomWithRange(modelo.getRango_minimo(),modelo.getRango_maximo()), 
-                )
+                this.randomWithRange(modelo.getRango_minimo(),modelo.getRango_maximo()),
+                this.darAlarmaRandom()
+                );
     }
 
     /**
@@ -131,7 +132,7 @@ public class Generador {
      *
      * @return
      */
-    public ParametroGenerador getParametros() {
+    public ArrayList<ParametroGenerador> getParametros() {
         return parametros;
     }
 
@@ -139,7 +140,7 @@ public class Generador {
      *
      * @param parametros
      */
-    public void setParametros(ParametroGenerador parametros) {
+    public void setParametros(ArrayList<ParametroGenerador> parametros) {
         this.parametros = parametros;
     }
 
