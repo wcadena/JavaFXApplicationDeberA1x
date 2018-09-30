@@ -36,24 +36,6 @@ public class intArray
         return data;
     }
     
-    /*public intArray(int[] source, int sourceCount)
-    {
-        this(source.length);
-        addAll(source, sourceCount);
-    }*/
-    
-    /*public intArray(int[] source)
-    {
-        this(source.length);
-        addAll(source);
-    }*/
-    
-    /*public intArray(intArray source)
-    {
-        this(source.getLength());
-        addAll(source);
-    }*/
-    
     public void add(int elem)
     {
         data[count] = elem;
@@ -66,31 +48,7 @@ public class intArray
         return count;
     }
 
-    
-    /*public void add(int index, int elem)
-    {
-        
-    }*/
-    
-    /*public void addAll(int[] source, int countSource)
-    {
-        for(int i = 0; i < countSource; i++)
-            add(source[i]);
-    }*/
-    
-    /*public void addAll (int[] source)
-    {
-        addAll(source, source.length);
-    }*/
-    
-    /*public void addAll (intArray source)
-    {
-        for (int i = 0; i < source.getCount(); i++) //source.getCount(); i++)
-            add(source.get(i));
-    }*/
-
-
-    
+       
     public int getLength()
     {
         return data.length;
