@@ -18,27 +18,32 @@ import javafx.stage.Stage;
  * @author wcade
  */
 public class JavaFXApplicationDeberA1x extends Application {
-    
+    private StackPane rootPanel;
     @Override
     public void start(Stage primaryStage) {
+        rootPanel = new StackPane();                
+        Scene scene = new Scene(rootPanel, 600, 550);        
+        primaryStage.setTitle("Sistema de Generadores");
+        primaryStage.setScene(scene);
+        primaryStage.show();  
+        this.inicializa_elementos();
+        
+        
+    }
+    
+    public void inicializa_elementos(){
+        //inicio boton inicializa un boton y lo instancia
         Button btn = new Button();
-        btn.setText("Say 'Hello World'");
+        btn.setText("Comenzar todo'");
         btn.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
+                System.out.println("Carga un generador");
             }
         });
-        
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        
-        Scene scene = new Scene(root, 300, 250);
-        
-        primaryStage.setTitle("Hello World!");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        this.rootPanel.getChildren().add(btn);                
+        //fin boton
     }
 
     /**
