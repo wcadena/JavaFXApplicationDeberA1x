@@ -30,18 +30,18 @@ public class JavaFXApplicationDeberA1x extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();  
         this.inicializa_elementos();
-        //ParametroGenerador pa_a1_modelo = new ParametroGenerador
-        //Generador a1 = new Generador(1,"Panasonic","Modelo1","CFGSY78B-1");
-        
+        ParametroGenerador pa_a1_modelo = new ParametroGenerador(1,"A1-Base",0,100,0,this.al1 );
+        Generador a1 = new Generador(1,"Panasonic","Modelo1","CFGSY78B-1",pa_a1_modelo);
+        System.out.println("---->"+a1);
         
     }
-    public Alarma a1;
-    public Alarma a2;
-    public Alarma a3;
+    public Alarma al1;
+    public Alarma al2;
+    public Alarma al3;
     public void iniciliza_alarmas(){
-        this.a1 = new Alarma(1,"Alarma 1", Alarma.TIPO1,"Interface 1" );
-        this.a2 = new Alarma(2,"Alarma 2", Alarma.TIPO2,"Interface 2" );
-        this.a3 = new Alarma(2,"Alarma 3", Alarma.TIPO3,"Interface 3" );        
+        this.al1 = new Alarma(1,"Alarma 1", Alarma.TIPO1,"Interface 1" );
+        this.al2 = new Alarma(2,"Alarma 2", Alarma.TIPO2,"Interface 2" );
+        this.al3 = new Alarma(2,"Alarma 3", Alarma.TIPO3,"Interface 3" );        
     }
     public void inicializa_elementos(){
         //inicio boton inicializa un boton y lo instancia

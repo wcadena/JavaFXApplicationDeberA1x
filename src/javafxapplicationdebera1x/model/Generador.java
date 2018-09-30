@@ -14,7 +14,7 @@ public class Generador {
     private String fabricante;
     private  String modelo;
     private String código;
-    private intArray parametros;
+    private ParametroGenerador parametros;
 
     /**
      * Crea un generador, no usa id automatico por le momento.
@@ -24,7 +24,7 @@ public class Generador {
      * @param código
      * @param parametros
      */
-    public Generador(int id, String fabricante, String modelo, String código, intArray parametros) {
+    public Generador(int id, String fabricante, String modelo, String código, ParametroGenerador parametros) {
         this.id = id;
         this.fabricante = fabricante;
         this.modelo = modelo;
@@ -100,7 +100,7 @@ public class Generador {
      *
      * @return
      */
-    public intArray getParametros() {
+    public ParametroGenerador getParametros() {
         return parametros;
     }
 
@@ -108,7 +108,7 @@ public class Generador {
      *
      * @param parametros
      */
-    public void setParametros(intArray parametros) {
+    public void setParametros(ParametroGenerador parametros) {
         this.parametros = parametros;
     }
 
