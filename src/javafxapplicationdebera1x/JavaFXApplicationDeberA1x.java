@@ -30,10 +30,25 @@ public class JavaFXApplicationDeberA1x extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();  
         this.inicializa_elementos();
-        ParametroGenerador pa_a1_modelo = new ParametroGenerador(1,"A1-Base",0,100,0,this.al1 );
-        Generador a1 = new Generador(1,"Panasonic","Modelo1","CFGSY78B-1",pa_a1_modelo);
-        System.out.println("---->"+a1);
+        iniciliza_alarmas();
         
+        
+    }
+    public Generador a1,a2,a3;
+    public void iniciliza_generadores(){
+        //primero llena el parametro con su alarma
+        ParametroGenerador pa_a1_modelo = new ParametroGenerador(1,"A1-Base",0,100,0,this.al1 );
+        //llena el generador con ese parametro
+        this.a1 = new Generador(1,"Panasonic","Modelo1","CFGSY78B-1",pa_a1_modelo);
+        //generador 2
+        ParametroGenerador pa_a2_modelo = new ParametroGenerador(1,"A1-Base",20,80,0,this.al1 );
+        this.a2 = new Generador(1,"Panasonic","Modelo1","CFGSY78B-1",pa_a2_modelo);
+        //generador 3
+        ParametroGenerador pa_a3_modelo = new ParametroGenerador(1,"A1-Base",30,750,0,this.al1 );
+        this.a3 = new Generador(1,"Panasonic","Modelo1","CFGSY78B-1",pa_a3_modelo);
+        System.out.println("--->a1"+a1);
+        System.out.println("--->a2"+a2);
+        System.out.println("--->a3"+a3);
     }
     public Alarma al1;
     public Alarma al2;
@@ -51,7 +66,8 @@ public class JavaFXApplicationDeberA1x extends Application {
             
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Carga un generador");
+                System.out.println("Carga un generadores x1");
+                iniciliza_generadores();
             }
         });
         this.rootPanel.getChildren().add(btn);                
