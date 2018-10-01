@@ -232,7 +232,13 @@ public class ParametroGenerador {
 
     @Override
     public String toString() {
-        return "ParametroGenerador{" + "nombre=" + nombre + ", is_principal=" + is_principal + ", rango_minimo=" + rango_minimo + ", rango_maximo=" + rango_maximo + ", valor_actual=" + valor_actual + ", tipo_alarma=" + tipo_alarma + ", created_at=" + created_at + ", update_at=" + update_at + ", delete_at=" + delete_at + '}';
+        String historico ="";
+        for (EventoParametro ep : this.historico) {
+            historico += ep.toString()+"\n";
+        }
+        return "ParametroGenerador{" + "id=" + id + ", nombre=" + nombre + ", is_principal=" + is_principal + ", rango_minimo=" + rango_minimo + ", rango_maximo=" + rango_maximo + ", valor_actual=" + valor_actual + ", tipo_alarma=" + tipo_alarma + ", created_at=" + created_at + ", update_at=" + update_at + ", delete_at=" + delete_at + ", historico=\n{" + historico + "}}";
     }
+
+    
     
 }
