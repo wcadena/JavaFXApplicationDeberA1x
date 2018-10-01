@@ -52,8 +52,7 @@ c) Implementar los métodos que permitan calcular la alteración media que suele
 parámetros de un generador. Este dato es útil para conocer en qué medida suelen alterarse
 los parámetros de un generador antes de que esto suceda y tomar alguna decisión de
 carácter preventivo. Esto se calcula como :
-(푀#−푚#)
-푚#
+fORMULA
 ```
 ```
 '
