@@ -69,7 +69,7 @@ public class JavaFXApplicationDeberA1x extends Application {
             System.out.println("");
         }
         System.out.println("___________________________________");
-        this.arranca_monitor(1000, 10);
+        this.arranca_monitor(1000, 10, a1);
         System.out.println(a1);
                 
     }
@@ -78,17 +78,13 @@ public class JavaFXApplicationDeberA1x extends Application {
      * @param tiempo //1000 para un minuto 
      * @param interacciones // numero de simulaciones
      */
-    public void arranca_monitor(int tiempo, int interacciones){
-        for(int i = 0; i < interacciones; i++)
-        {
-            System.out.println("Creoo simulacion");
-            a1.creaSimulacion();
-            /*try {
-                Thread.sleep(tiempo);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }*/
-        }
+    public void arranca_monitor(int tiempo, int interacciones, Generador generador_a_iterar){        
+        for(ParametroGenerador pa:generador_a_iterar.getParametros()){
+            for(int i = 0; i < interacciones; i++)
+            {
+                pa.generarEventoParametro();
+            }                
+        }        
     }
     public Alarma al1;
     public Alarma al2;

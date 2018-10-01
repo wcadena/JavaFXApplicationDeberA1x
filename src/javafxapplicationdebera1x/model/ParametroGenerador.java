@@ -5,6 +5,7 @@
  */
 package javafxapplicationdebera1x.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -12,6 +13,8 @@ import java.util.Date;
  * @author wcade
  */
 public class ParametroGenerador {
+    static final int MINIMO_RANDOM  = -50; 
+    static final int MAXIMO_RANDOM = 150; 
     static final int PRINCIPAL  = 999999911; 
     static final int DATO_SEC = 999999922; 
     private int id;
@@ -24,6 +27,7 @@ public class ParametroGenerador {
     private Date created_at;
     private Date update_at;
     private Date delete_at;
+    private ArrayList<EventoParametro> historico;
 
     /**
      * Aumenta datos de generador, usar este para principal o modelo
@@ -66,6 +70,20 @@ public class ParametroGenerador {
         this.valor_actual = valor_actual;
         this.tipo_alarma = tipo_alarma;
         this.created_at = new Date();
+    }
+    
+    public void generarEventoParametro(){
+        EventoParametro e = new EventoParametro();
+        this.update_at = e.getCreated_at();
+        this.valor_actual =e.getValor();
+        this.historico.add(e);
+    }
+    public void generarEventoParametro(int valor){
+        EventoParametro e = new EventoParametro();
+        e.setValor(valor);
+        this.update_at = e.getCreated_at();
+        this.valor_actual =e.getValor();
+        this.historico.add(e);
     }
 
     /**
