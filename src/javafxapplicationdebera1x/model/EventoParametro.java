@@ -16,7 +16,7 @@ public class EventoParametro {
     private Date created_at;
     
 
-    public EventoParametro(int valor, Date created_at, ParametroGenerador parametro_padre) {
+    public EventoParametro(int valor, Date created_at) {
         this.valor = valor;
         this.created_at = created_at;
     

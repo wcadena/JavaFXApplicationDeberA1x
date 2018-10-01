@@ -49,6 +49,8 @@ public class ParametroGenerador {
         this.valor_actual = valor_actual;
         this.tipo_alarma = tipo_alarma;
         this.created_at = new Date();
+        this.historico = new ArrayList<EventoParametro>();
+        this.historico.add(new EventoParametro(valor_actual,this.created_at));                
     }
     /**
      * Aumenta datos de generador como registro
@@ -70,6 +72,8 @@ public class ParametroGenerador {
         this.valor_actual = valor_actual;
         this.tipo_alarma = tipo_alarma;
         this.created_at = new Date();
+        this.historico = new ArrayList<EventoParametro>();
+        this.historico.add(new EventoParametro(valor_actual,this.created_at));                
     }
     
     public void generarEventoParametro(){
