@@ -148,7 +148,13 @@ public class GeneradorVista extends Application {
                 showAlert(Alert.AlertType.CONFIRMATION, gridPane.getScene().getWindow(), "Registration Successful!", "Se creo  el generador" + modelo.getText() + " de " + fabricante.getText());
                 System.out.println(gc.lista_generadores);
                 
-                Label GeneradorLabel = new Label("Generadores : ");
+                cargarListaGeneradores( gridPane);
+            }
+        });
+        cargarListaGeneradores( gridPane);
+    }
+    private void cargarListaGeneradores(GridPane gridPane){
+        Label GeneradorLabel = new Label("Generadores : ");
                 gridPane.add(GeneradorLabel, 0, 5);
 
                 
@@ -160,12 +166,10 @@ public class GeneradorVista extends Application {
                         System.out.println("--->"+observable.getValue().getCódigo());                        
                         generador_actual = observable.getValue();
                         gridPane.getChildren().clear();
-                        addUIControlsParams(gridPane);
+                        addUIControlsParams(gridPane);//se vuelve a cargar la pantalla de generadores
                     }
                 });
                 gridPane.add(itemsz, 1, 5);
-            }
-        });
     }
     
     private void addUIControlsParams(GridPane gridPane) {
@@ -272,8 +276,14 @@ public class GeneradorVista extends Application {
                 
                 showAlert(Alert.AlertType.CONFIRMATION, gridPane.getScene().getWindow(), "Registration Successful!", "Se creo  el Parametro de" + generador_actual.getModelo()+ " de " + generador_actual.getFabricante());
                 System.out.println(gc.lista_generadores);
+                cargarlistaParametros(gridPane);
                 
-                Label GeneradorLabel = new Label("Generadores : ");
+            }
+        });
+        cargarlistaParametros(gridPane);
+    }
+    private void cargarlistaParametros(GridPane gridPane){
+        Label GeneradorLabel = new Label("Generadores : ");
                 gridPane.add(GeneradorLabel, 0, 7);
 
                 
@@ -287,11 +297,11 @@ public class GeneradorVista extends Application {
                         Parametro_actual = observable.getValue();
                         Parametro_actual.generarEventoParametro();
                         showAlert(Alert.AlertType.CONFIRMATION, gridPane.getScene().getWindow(), "Iteraccion Creada!", "Se creo una iteraccion de generador");
+                        gridPane.getChildren().clear();
+                        addUIControls(gridPane);
                     }
                 });
                 gridPane.add(itemsz, 1, 7);
-            }
-        });
     }
 
     private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
