@@ -82,7 +82,7 @@ public class GeneradorVista extends Application {
     }
     public GeneradorController gc;
     public Generador generador_actual;
-
+    public ParametroGenerador Parametro_actual;
     private void addUIControls(GridPane gridPane) {
         // Add Header
         Label headerLabel = new Label("Registration Generator");
@@ -253,6 +253,18 @@ public class GeneradorVista extends Application {
                     showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error!", "Please enter a valor_actual");
                     return;                    
                 }
+                 if(!isInteger(rango_minimo.getText())) {
+                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error!", "Debe ser un numero rango_minimo");
+                    return;                    
+                }
+                 if(!isInteger(rango_maximo.getText())) {
+                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error!", "Debe ser un numero rango_maximo");
+                    return;                    
+                }
+                 if(!isInteger(valor_actual.getText())) {
+                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error!", "Debe ser un numero valor_actual");
+                    return;                    
+                }
                  Alarma a1 = new Alarma(1,"Alarma 1", Alarma.TIPO1,"Interface 1" );
                  //int id, String nombre, int rango_minimo, int rango_maximo, int valor_actual, Alarma tipo_alarma
                 ParametroGenerador parametro = new ParametroGenerador(1,nombre.getText(),Integer.parseInt(rango_minimo.getText()),Integer.parseInt(rango_maximo.getText()),Integer.parseInt(valor_actual.getText()),a1);    
@@ -271,7 +283,10 @@ public class GeneradorVista extends Application {
                     
                     @Override
                     public void changed(ObservableValue<? extends ParametroGenerador> observable, ParametroGenerador oldValue, ParametroGenerador newValue) {
-                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                        System.out.println("--->"+observable.getValue());                        
+                        Parametro_actual = observable.getValue();
+                        Parametro_actual.generarEventoParametro();
+                        showAlert(Alert.AlertType.CONFIRMATION, gridPane.getScene().getWindow(), "Iteraccion Creada!", "Se creo una iteraccion de generador");
                     }
                 });
                 gridPane.add(itemsz, 1, 7);
@@ -287,6 +302,17 @@ public class GeneradorVista extends Application {
         alert.initOwner(owner);
         alert.show();
     }
+    public boolean isInteger(String s) {
+    try { 
+        Integer.parseInt(s); 
+    } catch(NumberFormatException e) { 
+        return false; 
+    } catch(NullPointerException e) {
+        return false;
+    }
+    // only got here if we didn't return false
+    return true;
+}
 
     public static void main(String[] args) {
         launch(args);
