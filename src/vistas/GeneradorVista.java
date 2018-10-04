@@ -313,6 +313,7 @@ public class GeneradorVista extends Application {
                         Parametro_actual = observable.getValue();
                         Parametro_actual.generarEventoParametro();
                         showAlert(Alert.AlertType.CONFIRMATION, gridPane.getScene().getWindow(), "Iteraccion Creada!", "Se creo una iteraccion de generador");                        
+                        cargarlistaParametros(gridPane);
                     }
                 });
                 gridPane.add(itemsz, 1, 7);

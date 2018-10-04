@@ -89,6 +89,16 @@ public class ParametroGenerador {
         this.valor_actual =e.getValor();
         this.historico.add(e);
     }
+    public double alteracionMedia(){
+        int n =0;
+        double promedio_valores_históricos=0;
+        for (EventoParametro ep : this.historico) {
+            n++;
+            promedio_valores_históricos +=ep.getValor();
+        }
+        promedio_valores_históricos =promedio_valores_históricos /n;
+        return promedio_valores_históricos;
+    }
 
     /**
      *
