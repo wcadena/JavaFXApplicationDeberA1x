@@ -98,7 +98,7 @@ public class intArray
     
     public int promedio()
     {
-        return 0;
+        return suma()/count;
     }
     
     public int suma()

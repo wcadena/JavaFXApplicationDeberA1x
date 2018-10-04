@@ -91,12 +91,12 @@ public class ParametroGenerador {
     }
     public double alteracionMedia(){
         int n =0;
-        double promedio_valores_históricos=0;
+        intArray valores_históricos = new intArray(this.historico.size());
         for (EventoParametro ep : this.historico) {
             n++;
-            promedio_valores_históricos +=ep.getValor();
+            valores_históricos.add(ep.getValor());
         }
-        promedio_valores_históricos =promedio_valores_históricos /n;
+        double promedio_valores_históricos =valores_históricos.promedio();
         double semisuma = this.semisuma(this.rango_maximo, this.rango_minimo);
         return (promedio_valores_históricos-semisuma)/semisuma;
         
