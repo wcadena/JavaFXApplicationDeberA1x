@@ -7,6 +7,7 @@ package javafxapplicationdebera1x.controlers;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 import javafxapplicationdebera1x.model.Generador;
 
 /**
@@ -15,10 +16,10 @@ import javafxapplicationdebera1x.model.Generador;
  */
 public class GeneradorController {
 
-    public ArrayList<Generador>  lista_generadores;
+    public List<Generador>  lista_generadores;
 
     public GeneradorController() {
-        ArrayList<Generador>  lista_generadores = new ArrayList<Generador>();
+        List<Generador>  lista_generadores = new ArrayList<Generador>();
               
         this.lista_generadores = lista_generadores;
     }
@@ -26,7 +27,7 @@ public class GeneradorController {
         this.lista_generadores = lista_generadores;
     }
     public GeneradorController(Generador generador) {
-        ArrayList<Generador>  lista_generadores = new ArrayList<Generador>();
+        List<Generador>  lista_generadores = new ArrayList<Generador>();
         lista_generadores.add(generador);        
         this.lista_generadores = lista_generadores;
     }
@@ -35,7 +36,7 @@ public class GeneradorController {
      *
      * @return
      */
-    public ArrayList<Generador> lista_generadores(){
+    public List<Generador> lista_generadores(){
         return this.lista_generadores;
     }
     public void addGenerador(Generador generador){

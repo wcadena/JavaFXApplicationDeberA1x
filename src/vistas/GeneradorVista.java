@@ -5,7 +5,14 @@
  */
 package vistas;
 
+import java.util.ArrayList;
+import java.util.List;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -20,7 +27,7 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafxapplicationdebera1x.controlers.GeneradorController;
 
-public class Generador extends Application {
+public class GeneradorVista extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -136,6 +143,20 @@ public class Generador extends Application {
                 gc.addGenerador(Generador);
                 showAlert(Alert.AlertType.CONFIRMATION, gridPane.getScene().getWindow(), "Registration Successful!", "Se creo  el generador" + modelo.getText() + " de " + fabricante.getText());
                 System.out.println(gc.lista_generadores);
+                
+                Label GeneradorLabel = new Label("Generadores : ");
+                gridPane.add(GeneradorLabel, 0, 5);
+
+                
+                ObservableList<javafxapplicationdebera1x.model.Generador> observableList = FXCollections.observableList( gc.lista_generadores());
+                ListView<javafxapplicationdebera1x.model.Generador> itemsz = new ListView<javafxapplicationdebera1x.model.Generador>(observableList);
+                itemsz.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<javafxapplicationdebera1x.model.Generador>() {
+                    @Override
+                    public void changed(ObservableValue<? extends javafxapplicationdebera1x.model.Generador> observable, javafxapplicationdebera1x.model.Generador oldValue, javafxapplicationdebera1x.model.Generador newValue) {
+                        System.out.println("--->"+observable.getValue().getCódigo());
+                    }
+                });
+                gridPane.add(itemsz, 1, 5);
             }
         });
     }
