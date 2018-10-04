@@ -159,6 +159,8 @@ public class GeneradorVista extends Application {
                     public void changed(ObservableValue<? extends javafxapplicationdebera1x.model.Generador> observable, javafxapplicationdebera1x.model.Generador oldValue, javafxapplicationdebera1x.model.Generador newValue) {
                         System.out.println("--->"+observable.getValue().getCódigo());                        
                         generador_actual = observable.getValue();
+                        gridPane.getChildren().clear();
+                        addUIControlsParams(gridPane);
                     }
                 });
                 gridPane.add(itemsz, 1, 5);
@@ -228,7 +230,7 @@ public class GeneradorVista extends Application {
         submitButton.setPrefHeight(40);
         submitButton.setDefaultButton(true);
         submitButton.setPrefWidth(100);
-        gridPane.add(submitButton, 0, 4, 2, 1);
+        gridPane.add(submitButton, 0, 6, 2, 1);
         GridPane.setHalignment(submitButton, HPos.CENTER);
         GridPane.setMargin(submitButton, new Insets(20, 0,20,0));
 
@@ -260,7 +262,7 @@ public class GeneradorVista extends Application {
                 System.out.println(gc.lista_generadores);
                 
                 Label GeneradorLabel = new Label("Generadores : ");
-                gridPane.add(GeneradorLabel, 0, 6);
+                gridPane.add(GeneradorLabel, 0, 7);
 
                 
                 ObservableList<ParametroGenerador> observableList = FXCollections.observableList( generador_actual.getParametros());
@@ -272,7 +274,7 @@ public class GeneradorVista extends Application {
                         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                     }
                 });
-                gridPane.add(itemsz, 1, 6);
+                gridPane.add(itemsz, 1, 7);
             }
         });
     }
