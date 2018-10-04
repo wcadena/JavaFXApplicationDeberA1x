@@ -26,6 +26,7 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafxapplicationdebera1x.controlers.GeneradorController;
+import javafxapplicationdebera1x.model.Generador;
 
 public class GeneradorVista extends Application {
 
@@ -78,6 +79,7 @@ public class GeneradorVista extends Application {
         return gridPane;
     }
     public GeneradorController gc;
+    public Generador generador_actual;
 
     private void addUIControls(GridPane gridPane) {
         // Add Header
@@ -153,7 +155,8 @@ public class GeneradorVista extends Application {
                 itemsz.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<javafxapplicationdebera1x.model.Generador>() {
                     @Override
                     public void changed(ObservableValue<? extends javafxapplicationdebera1x.model.Generador> observable, javafxapplicationdebera1x.model.Generador oldValue, javafxapplicationdebera1x.model.Generador newValue) {
-                        System.out.println("--->"+observable.getValue().getCódigo());
+                        System.out.println("--->"+observable.getValue().getCódigo());                        
+                        generador_actual = observable.getValue();
                     }
                 });
                 gridPane.add(itemsz, 1, 5);
