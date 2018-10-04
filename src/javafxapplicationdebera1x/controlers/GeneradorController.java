@@ -17,6 +17,11 @@ public class GeneradorController {
 
     public ArrayList<Generador>  lista_generadores;
 
+    public GeneradorController() {
+        ArrayList<Generador>  lista_generadores = new ArrayList<Generador>();
+              
+        this.lista_generadores = lista_generadores;
+    }
     public GeneradorController(ArrayList<Generador> lista_generadores) {
         this.lista_generadores = lista_generadores;
     }

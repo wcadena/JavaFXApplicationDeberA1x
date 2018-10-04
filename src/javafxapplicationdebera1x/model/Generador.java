@@ -18,6 +18,13 @@ public class Generador {
     private String código;
     private ArrayList<ParametroGenerador> parametros;
 
+    public Generador(int id, String fabricante, String modelo, String código) {
+        this.id = id;
+        this.fabricante = fabricante;
+        this.modelo = modelo;
+        this.código = código;
+        this.parametros = new ArrayList<ParametroGenerador>();
+    }
     /**
      * Crea un generador, no usa id automatico por le momento.
      * @param id

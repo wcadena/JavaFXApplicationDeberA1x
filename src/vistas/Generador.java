@@ -18,15 +18,17 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import javafxapplicationdebera1x.controlers.GeneradorController;
 
 public class Generador extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        this.gc = new GeneradorController();
         primaryStage.setTitle("Registration Form JavaFX Application");
 
         // Create the registration form grid pane
-        GridPane gridPane = createRegistrationFormPane();
+        GridPane gridPane = createRegistrationGenerador();
         // Add UI controls to the registration form grid pane
         addUIControls(gridPane);
         // Create a scene with registration form grid pane as the root node
@@ -38,7 +40,7 @@ public class Generador extends Application {
     }
 
 
-    private GridPane createRegistrationFormPane() {
+    private GridPane createRegistrationGenerador() {
         // Instantiate a new Grid Pane
         GridPane gridPane = new GridPane();
 
@@ -68,45 +70,46 @@ public class Generador extends Application {
 
         return gridPane;
     }
+    public GeneradorController gc;
 
     private void addUIControls(GridPane gridPane) {
         // Add Header
-        Label headerLabel = new Label("Registration Form");
+        Label headerLabel = new Label("Registration Generator");
         headerLabel.setFont(Font.font("Arial", FontWeight.BOLD, 24));
         gridPane.add(headerLabel, 0,0,2,1);
         GridPane.setHalignment(headerLabel, HPos.CENTER);
         GridPane.setMargin(headerLabel, new Insets(20, 0,20,0));
 
         // Add Name Label
-        Label nameLabel = new Label("Full Name : ");
+        Label nameLabel = new Label("Fabricante : ");
         gridPane.add(nameLabel, 0,1);
 
         // Add Name Text Field
-        TextField nameField = new TextField();
-        nameField.setPrefHeight(40);
-        gridPane.add(nameField, 1,1);
+        TextField fabricante = new TextField();
+        fabricante.setPrefHeight(40);
+        gridPane.add(fabricante, 1,1);
 
 
         // Add Email Label
-        Label emailLabel = new Label("Email ID : ");
+        Label emailLabel = new Label("Modelo : ");
         gridPane.add(emailLabel, 0, 2);
 
         // Add Email Text Field
-        TextField emailField = new TextField();
-        emailField.setPrefHeight(40);
-        gridPane.add(emailField, 1, 2);
+        TextField modelo = new TextField();
+        modelo.setPrefHeight(40);
+        gridPane.add(modelo, 1, 2);
 
         // Add Password Label
-        Label passwordLabel = new Label("Password : ");
+        Label passwordLabel = new Label("Codigo : ");
         gridPane.add(passwordLabel, 0, 3);
 
         // Add Password Field
-        PasswordField passwordField = new PasswordField();
-        passwordField.setPrefHeight(40);
-        gridPane.add(passwordField, 1, 3);
+        TextField codigo = new TextField();
+        codigo.setPrefHeight(40);
+        gridPane.add(codigo, 1, 3);
 
         // Add Submit Button
-        Button submitButton = new Button("Submit");
+        Button submitButton = new Button("Crear");
         submitButton.setPrefHeight(40);
         submitButton.setDefaultButton(true);
         submitButton.setPrefWidth(100);
@@ -117,20 +120,22 @@ public class Generador extends Application {
         submitButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if(nameField.getText().isEmpty()) {
-                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error!", "Please enter your name");
+                if(fabricante.getText().isEmpty()) {
+                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error!", "Please enter a fabricante");
                     return;
                 }
-                if(emailField.getText().isEmpty()) {
-                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error!", "Please enter your email id");
+                if(modelo.getText().isEmpty()) {
+                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error!", "Please enter a modelo");
                     return;
                 }
-                if(passwordField.getText().isEmpty()) {
-                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error!", "Please enter a password");
+                if(codigo.getText().isEmpty()) {
+                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error!", "Please enter a codigo");
                     return;
                 }
-
-                showAlert(Alert.AlertType.CONFIRMATION, gridPane.getScene().getWindow(), "Registration Successful!", "Welcome " + nameField.getText());
+                javafxapplicationdebera1x.model.Generador Generador = new javafxapplicationdebera1x.model.Generador(1,fabricante.getText(),modelo.getText(),codigo.getText());    
+                gc.addGenerador(Generador);
+                showAlert(Alert.AlertType.CONFIRMATION, gridPane.getScene().getWindow(), "Registration Successful!", "Se creo  el generador" + modelo.getText() + " de " + fabricante.getText());
+                System.out.println(gc.lista_generadores);
             }
         });
     }
