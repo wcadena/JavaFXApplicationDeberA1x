@@ -97,7 +97,13 @@ public class ParametroGenerador {
             promedio_valores_históricos +=ep.getValor();
         }
         promedio_valores_históricos =promedio_valores_históricos /n;
-        return promedio_valores_históricos;
+        double semisuma = this.semisuma(this.rango_maximo, this.rango_minimo);
+        return (promedio_valores_históricos-semisuma)/semisuma;
+        
+        
+    }
+    private double semisuma(int max, int min) {
+        return ((max + min) / 2.0);
     }
 
     /**

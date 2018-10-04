@@ -234,7 +234,7 @@ public class GeneradorVista extends Application {
         submitButton.setPrefHeight(40);
         submitButton.setDefaultButton(true);
         submitButton.setPrefWidth(100);
-        gridPane.add(submitButton, 0, 6, 2, 1);
+        gridPane.add(submitButton, 1, 6);
         GridPane.setHalignment(submitButton, HPos.CENTER);
         GridPane.setMargin(submitButton, new Insets(20, 0,20,0));
 
@@ -281,12 +281,12 @@ public class GeneradorVista extends Application {
             }
         });
         cargarlistaParametros(gridPane);
-        // Add Submit Button
-        Button regresaButton = new Button("Regresa");
+        // Add regresa Button
+        Button regresaButton = new Button("< Regresa");
         regresaButton.setPrefHeight(40);
         regresaButton.setDefaultButton(true);
         regresaButton.setPrefWidth(100);
-        gridPane.add(regresaButton, 0, 8, 2, 1);
+        gridPane.add(regresaButton,0, 6);
         GridPane.setHalignment(regresaButton, HPos.CENTER);
         GridPane.setMargin(regresaButton, new Insets(20, 0, 20, 0));
         regresaButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -294,6 +294,20 @@ public class GeneradorVista extends Application {
             public void handle(ActionEvent event) {
                 gridPane.getChildren().clear();// para volver a lista de generadores
                 addUIControls(gridPane);
+            }
+        });
+        // Add Calcula Button
+        Button CalculaButton = new Button("Calcula");
+        CalculaButton.setPrefHeight(40);
+        CalculaButton.setDefaultButton(true);
+        CalculaButton.setPrefWidth(100);
+        gridPane.add(CalculaButton,2, 6);
+        GridPane.setHalignment(CalculaButton, HPos.CENTER);
+        GridPane.setMargin(CalculaButton, new Insets(20, 0, 20, 0));
+        CalculaButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                showAlert(Alert.AlertType.CONFIRMATION, gridPane.getScene().getWindow(), "Calculo Realizado!", "El calculo de Media es:"+Parametro_actual.alteracionMedia());                        
             }
         });
     }
