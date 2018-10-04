@@ -281,7 +281,23 @@ public class GeneradorVista extends Application {
             }
         });
         cargarlistaParametros(gridPane);
+        // Add Submit Button
+        Button regresaButton = new Button("Regresa");
+        regresaButton.setPrefHeight(40);
+        regresaButton.setDefaultButton(true);
+        regresaButton.setPrefWidth(100);
+        gridPane.add(regresaButton, 0, 8, 2, 1);
+        GridPane.setHalignment(regresaButton, HPos.CENTER);
+        GridPane.setMargin(regresaButton, new Insets(20, 0, 20, 0));
+        regresaButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                gridPane.getChildren().clear();// para volver a lista de generadores
+                addUIControls(gridPane);
+            }
+        });
     }
+
     private void cargarlistaParametros(GridPane gridPane){
         Label GeneradorLabel = new Label("Generadores : ");
                 gridPane.add(GeneradorLabel, 0, 7);
@@ -296,9 +312,7 @@ public class GeneradorVista extends Application {
                         System.out.println("--->"+observable.getValue());                        
                         Parametro_actual = observable.getValue();
                         Parametro_actual.generarEventoParametro();
-                        showAlert(Alert.AlertType.CONFIRMATION, gridPane.getScene().getWindow(), "Iteraccion Creada!", "Se creo una iteraccion de generador");
-                        gridPane.getChildren().clear();
-                        addUIControls(gridPane);
+                        showAlert(Alert.AlertType.CONFIRMATION, gridPane.getScene().getWindow(), "Iteraccion Creada!", "Se creo una iteraccion de generador");                        
                     }
                 });
                 gridPane.add(itemsz, 1, 7);
