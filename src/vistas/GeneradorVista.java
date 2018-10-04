@@ -324,6 +324,10 @@ public class GeneradorVista extends Application {
                         Parametro_actual = observable.getValue();
                         Parametro_actual.generarEventoParametro();
                         showAlert(Alert.AlertType.CONFIRMATION, gridPane.getScene().getWindow(), "Iteraccion Creada!", "Se creo una iteraccion de generador");                        
+                        if(Parametro_actual.getValor_actual()<= Parametro_actual.getRango_minimo() ||
+                               Parametro_actual.getValor_actual()>= Parametro_actual.getRango_maximo() ){
+                            showAlert(Alert.AlertType.CONFIRMATION, gridPane.getScene().getWindow(), "Alarma ", "Evento fuera de rango: "+Parametro_actual.getValor_actual());                        
+                        }
                         cargarlistaParametros(gridPane);
                     }
                 });
