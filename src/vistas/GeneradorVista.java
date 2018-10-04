@@ -83,6 +83,7 @@ public class GeneradorVista extends Application {
     public GeneradorController gc;
     public Generador generador_actual;
     public ParametroGenerador Parametro_actual;
+    public Alarma alarma_actual;
     private void addUIControls(GridPane gridPane) {
         // Add Header
         Label headerLabel = new Label("Registration Generator");
@@ -219,14 +220,7 @@ public class GeneradorVista extends Application {
         ////////////////////////////////////////////////////////
         
          ///////////////////////////////////////////////////////
-        // Add Password Label
-        Label valor_alarmaLabel = new Label("Alarma : ");
-        gridPane.add(valor_alarmaLabel, 0, 5);
-
-        // Add Password Field
-        TextField alarama = new TextField();
-        alarama.setPrefHeight(40);
-        gridPane.add(alarama, 1, 5);
+        cargarAlarmas( gridPane);
         ////////////////////////////////////////////////////////
 
         // Add Submit Button
@@ -268,10 +262,13 @@ public class GeneradorVista extends Application {
                  if(!isInteger(valor_actual.getText())) {
                     showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error!", "Debe ser un numero valor_actual");
                     return;                    
+                }   
+                 if(alarma_actual == null) {
+                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error!", "Debe elegir Alarma");
+                    return;                    
                 }
-                 Alarma a1 = new Alarma(1,"Alarma 1", Alarma.TIPO1,"Interface 1" );
                  //int id, String nombre, int rango_minimo, int rango_maximo, int valor_actual, Alarma tipo_alarma
-                ParametroGenerador parametro = new ParametroGenerador(1,nombre.getText(),Integer.parseInt(rango_minimo.getText()),Integer.parseInt(rango_maximo.getText()),Integer.parseInt(valor_actual.getText()),a1);    
+                ParametroGenerador parametro = new ParametroGenerador(1,nombre.getText(),Integer.parseInt(rango_minimo.getText()),Integer.parseInt(rango_maximo.getText()),Integer.parseInt(valor_actual.getText()),alarma_actual);    
                 generador_actual.addParametro(parametro);
                 
                 showAlert(Alert.AlertType.CONFIRMATION, gridPane.getScene().getWindow(), "Registration Successful!", "Se creo  el Parametro de" + generador_actual.getModelo()+ " de " + generador_actual.getFabricante());
@@ -331,6 +328,32 @@ public class GeneradorVista extends Application {
                     }
                 });
                 gridPane.add(itemsz, 1, 7);
+    }
+    private void cargarAlarmas(GridPane gridPane) {
+        Label GeneradorLabel = new Label("Alarmas : ");
+        gridPane.add(GeneradorLabel, 0, 5);
+
+        Alarma al1;
+        Alarma al2;
+        Alarma al3;
+
+        al1 = new Alarma(1, "Alarma 1", Alarma.TIPO1, "Interface 1");
+        al2 = new Alarma(2, "Alarma 2", Alarma.TIPO2, "Interface 2");
+        al3 = new Alarma(2, "Alarma 3", Alarma.TIPO3, "Interface 3");
+
+        List<Alarma> listaAlarmas = new ArrayList<Alarma>();
+        listaAlarmas.add(al1);
+        listaAlarmas.add(al2);
+        listaAlarmas.add(al3);
+        ObservableList<Alarma> observableList = FXCollections.observableList(listaAlarmas);
+        ListView<Alarma> itemsz = new ListView<Alarma>(observableList);
+        itemsz.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Alarma>() {
+            @Override
+            public void changed(ObservableValue<? extends Alarma> observable, Alarma oldValue, Alarma newValue) {
+                alarma_actual = observable.getValue();
+            }
+        });
+        gridPane.add(itemsz, 1, 5);
     }
 
     private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
