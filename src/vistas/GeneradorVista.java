@@ -26,7 +26,9 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafxapplicationdebera1x.controlers.GeneradorController;
+import javafxapplicationdebera1x.model.Alarma;
 import javafxapplicationdebera1x.model.Generador;
+import javafxapplicationdebera1x.model.ParametroGenerador;
 
 public class GeneradorVista extends Application {
 
@@ -160,6 +162,117 @@ public class GeneradorVista extends Application {
                     }
                 });
                 gridPane.add(itemsz, 1, 5);
+            }
+        });
+    }
+    
+    private void addUIControlsParams(GridPane gridPane) {
+        // Add Header
+        Label headerLabel = new Label("Registration Params");
+        headerLabel.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+        gridPane.add(headerLabel, 0,0,2,1);
+        GridPane.setHalignment(headerLabel, HPos.CENTER);
+        GridPane.setMargin(headerLabel, new Insets(20, 0,20,0));
+
+        // Add Name Label
+        Label nameLabel = new Label("Nombre : ");
+        gridPane.add(nameLabel, 0,1);
+
+        // Add Name Text Field
+        TextField nombre = new TextField();
+        nombre.setPrefHeight(40);
+        gridPane.add(nombre, 1,1);
+
+
+        // Add Email Label
+        Label emailLabel = new Label("rango_minimo : ");
+        gridPane.add(emailLabel, 0, 2);
+
+        // Add Email Text Field
+        TextField rango_minimo = new TextField();
+        rango_minimo.setPrefHeight(40);
+        gridPane.add(rango_minimo, 1, 2);
+
+        // Add Password Label
+        Label passwordLabel = new Label("Rango_maximo : ");
+        gridPane.add(passwordLabel, 0, 3);
+
+        // Add Password Field
+        TextField rango_maximo = new TextField();
+        rango_maximo.setPrefHeight(40);
+        gridPane.add(rango_maximo, 1, 3);
+        ///////////////////////////////////////////////////////
+        // Add Password Label
+        Label valor_actualLabel = new Label("Valor_actual : ");
+        gridPane.add(valor_actualLabel, 0, 4);
+
+        // Add Password Field
+        TextField valor_actual = new TextField();
+        valor_actual.setPrefHeight(40);
+        gridPane.add(valor_actual, 1, 4);
+        ////////////////////////////////////////////////////////
+        
+         ///////////////////////////////////////////////////////
+        // Add Password Label
+        Label valor_alarmaLabel = new Label("Alarma : ");
+        gridPane.add(valor_alarmaLabel, 0, 5);
+
+        // Add Password Field
+        TextField alarama = new TextField();
+        alarama.setPrefHeight(40);
+        gridPane.add(alarama, 1, 5);
+        ////////////////////////////////////////////////////////
+
+        // Add Submit Button
+        Button submitButton = new Button("Crear");
+        submitButton.setPrefHeight(40);
+        submitButton.setDefaultButton(true);
+        submitButton.setPrefWidth(100);
+        gridPane.add(submitButton, 0, 4, 2, 1);
+        GridPane.setHalignment(submitButton, HPos.CENTER);
+        GridPane.setMargin(submitButton, new Insets(20, 0,20,0));
+
+        submitButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if(nombre.getText().isEmpty()) {
+                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error!", "Please enter a nombre");
+                    return;
+                }
+                if(rango_minimo.getText().isEmpty()) {
+                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error!", "Please enter a rango_minimo");
+                    return;
+                }
+                if(rango_maximo.getText().isEmpty()) {
+                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error!", "Please enter a rango_maximo");
+                    return;
+                }
+                 if(valor_actual.getText().isEmpty()) {
+                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error!", "Please enter a valor_actual");
+                    return;                    
+                }
+                 Alarma a1 = new Alarma(1,"Alarma 1", Alarma.TIPO1,"Interface 1" );
+                 //int id, String nombre, int rango_minimo, int rango_maximo, int valor_actual, Alarma tipo_alarma
+                ParametroGenerador parametro = new ParametroGenerador(1,nombre.getText(),Integer.parseInt(rango_minimo.getText()),Integer.parseInt(rango_maximo.getText()),Integer.parseInt(valor_actual.getText()),a1);    
+                generador_actual.addParametro(parametro);
+                
+                showAlert(Alert.AlertType.CONFIRMATION, gridPane.getScene().getWindow(), "Registration Successful!", "Se creo  el Parametro de" + generador_actual.getModelo()+ " de " + generador_actual.getFabricante());
+                System.out.println(gc.lista_generadores);
+                
+                Label GeneradorLabel = new Label("Generadores : ");
+                gridPane.add(GeneradorLabel, 0, 6);
+
+                
+                ObservableList<ParametroGenerador> observableList = FXCollections.observableList( generador_actual.getParametros());
+                ListView<ParametroGenerador> itemsz = new ListView<ParametroGenerador>(observableList);
+                itemsz.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ParametroGenerador>() {
+                    
+                    @Override
+                    public void changed(ObservableValue<? extends ParametroGenerador> observable, ParametroGenerador oldValue, ParametroGenerador newValue) {
+                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                    }
+                });
+                gridPane.add(itemsz, 1, 6);
             }
         });
     }

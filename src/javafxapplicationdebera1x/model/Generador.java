@@ -41,6 +41,9 @@ public class Generador {
         this.parametros = new ArrayList<ParametroGenerador>();
         this.parametros.add(parametros);
     }
+    public void addParametro(ParametroGenerador parametros){
+        this.parametros.add(parametros);
+    }
     public static int randomWithRange(int min, int max)
     {
         int range = (max - min) + 1;
